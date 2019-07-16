@@ -1,0 +1,23 @@
+USER REGISTERATION ROUTE
+URL:/api/register
+body:{
+	"name":{
+		"firstName":"Black",
+		"lastName":"kumar"
+	},
+	"email":"black1@abc.com",
+	"password":"abc123",
+	"address":{
+		"type":"temp",
+		"houseNumber":"234",
+		"area":"pacific rim",
+		"city":"somewhre",
+		"pinCode":"2344"
+	},
+	"phone":{
+		"type":"Mobile",
+		"contact":"3434343434"
+	}
+}
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++x`
