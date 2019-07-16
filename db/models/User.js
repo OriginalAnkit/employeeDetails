@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const utility = require('../../utilities/utility');
 const {
     addressSchema
 } = require('./Address');
@@ -22,7 +23,8 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         trim: true,
-        required: [true, 'Email is required']
+        required: [true, 'Email is required'],
+        unique:[true,"Email already registered"]
     },
     password: {
         type: String,
@@ -34,14 +36,15 @@ const userSchema = new mongoose.Schema({
     phone: [phoneSchema]
 })
 
-userSchema.pre('save',function(next) {
-    if(this.password){
-        
-    }else{
-        next()
+userSchema.pre('save', function (next) {
+    if (this.password) {
+        this.password = utility.encryptPass(this.password);
+        next();
+    } else {
+        next();
     }
 })
 
 module.exports = {
-     userSchema
+    userSchema
 }

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect(`mongodb+srv://${global.proKeys.db.user}:${global.proKeys.db.pass}@cluster0-qicyz.mongodb.net/test?retryWrites=true&w=majority`, {
+mongoose.connect(`mongodb+srv://${global.proKeys.db.user}:${global.proKeys.db.pass}@cluster0-qicyz.mongodb.net/employeeDb?retryWrites=true&w=majority`, {
     useNewUrlParser: true
 });
 mongoose.connection
