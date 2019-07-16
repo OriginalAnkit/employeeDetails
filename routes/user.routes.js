@@ -1,7 +1,6 @@
 var router = require('express').Router();
-var {
-    registerUser
-} = require('./user/user.function');
+var userFun= require('./user/user.function');
 
-router.post('/register', registerUser)
+router.post('/register', userFun.registerUser);
+router.post('/login',userFun.loginUser)
 module.exports=router;

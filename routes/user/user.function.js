@@ -46,5 +46,9 @@ async function registerUser(req, res, next) {
 
 }
 
-module.exports = { registerUser }
+
+function loginUser(req,res) {
+    console.log(req.body)
+}
+module.exports = { registerUser, loginUser}
 
