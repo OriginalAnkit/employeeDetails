@@ -1,0 +1,27 @@
+<mat-sidenav-container class="my_container" (backdropClick)="close('backdrop')">
+
+    <mat-sidenav #sidenav>
+        <div class="fr">
+            <button class="close_btn" (click)="close('toggle button')">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <div class="menu-btn">
+            <button mat-stroked-button color="primary" routerLink='/login'>Login</button>
+            <button mat-stroked-button color="primary" routerLink='/register'>Register</button>
+            <button mat-stroked-button color="primary">Details</button>
+
+        </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button mat-icon-button (click)="sidenav.open()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <h1>Employee Details</h1>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
