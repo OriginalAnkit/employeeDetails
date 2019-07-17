@@ -27,3 +27,7 @@ body: {
 	"email":"black@123",
 	"password":"sdfsdsf"
 }
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+GET EMPLOYEES ROUTE
+URL: /api/employees
