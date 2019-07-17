@@ -1,5 +1,6 @@
-const _ = require('lodash')
+const _ = require('lodash');
 const bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
 
 function checkFields(obj, fields) {
     f ={};
@@ -32,8 +33,13 @@ function comparePass(pass,hash){
     return bcrypt.compareSync(pass, hash);
 }
 
+function generateToken(details){
+    var token = jwt.sign(details,global.proKeys.secret);
+    return token;
+}
 module.exports = {
     checkFields,
     encryptPass,
-    comparePass
+    comparePass,
+    generateToken
 }

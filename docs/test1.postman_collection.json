@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "37c18285-6e21-444d-ac74-37b961df87a7",
+		"name": "test1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:3000/api/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"email\":\"bluek@abc.com\",\r\n\t\"password\":\"abc123\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/api/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\":{\r\n\t\t\"firstName\":\"Black\",\r\n\t\t\"lastName\":\"kumar\"\r\n\t},\r\n\t\"email\":\"bluek@abc.com\",\r\n\t\"password\":\"abc123\",\r\n\t\"address\":{\r\n\t\t\"type\":\"temp\",\r\n\t\t\"houseNumber\":\"234\",\r\n\t\t\"area\":\"pacific rim\",\r\n\t\t\"city\":\"somewhre\",\r\n\t\t\"pinCode\":\"2344\"\r\n\t},\r\n\t\"phone\":{\r\n\t\t\"type\":\"Mobile\",\r\n\t\t\"contact\":\"544545435\"\r\n\t}\r\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/api/register",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/employees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/employees",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/employee/5d2e049349cff5441c69deaf",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMmVlODlhYjZjMjlkNDJiNDI1NTQ0ZCIsImlhdCI6MTU2MzM2MzkxMH0.-DIhNZ3jd4qHyEO79MMWYtNSlgT2KvXBTxK4iXGumfo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/employee/5d2e049349cff5441c69deaf",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"employee",
+						"5d2e049349cff5441c69deaf"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

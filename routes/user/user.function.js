@@ -99,6 +99,7 @@ async function loginUser(req, res) {
     newUser=user.toObject()
     delete newUser.password;
     delete newUser.__v;
+    newUser.token=utility.generateToken({id:newUser._id})
     res.json({
         error:true,
         msg:'Login Successfull',
@@ -124,6 +125,7 @@ async function listEmployees(req,res){
 
 }
 
+//STUB Get employee details by id
 async function getOneEployee(req,res){
     try{
         let user=await User.findById(req.params.id,{password:0,_v:0})
