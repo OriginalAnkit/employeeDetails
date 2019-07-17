@@ -1,0 +1,15 @@
+.regi-container {
+  width: 40%;
+  margin: auto;
+  margin-top: 1%;
+}
+.form-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 800px) {
+  .regi-container {
+    width: 80%;
+  }
+}

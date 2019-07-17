@@ -1,15 +1,15 @@
 <div class="tc login-container">
     <mat-card>
         <h2>Employee Login</h2>
-        <form class="form-fields">
+        <form class="form-fields" (ngSubmit)='formSubmit(f)' #f='ngForm'>
             <mat-form-field>
-                <input matInput #input maxlength="10" placeholder="Email">
+                <input matInput type='email' placeholder="Email" name='email' ngModel email required>
             </mat-form-field>
         
             <mat-form-field>
-                <input matInput #input maxlength="10" placeholder="Password">
+                <input matInput type="password" placeholder="Password" name='password' ngModel required>
             </mat-form-field>
-            <button mat-raised-button color="primary">Submit</button>
+            <button mat-raised-button color="primary" [disabled]='f.invalid'>Submit</button>
 
         </form>
 

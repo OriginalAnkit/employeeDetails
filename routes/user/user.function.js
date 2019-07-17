@@ -101,7 +101,7 @@ async function loginUser(req, res) {
     delete newUser.__v;
     newUser.token=utility.generateToken({id:newUser._id})
     res.json({
-        error:true,
+        error:false,
         msg:'Login Successfull',
         data:newUser
     })
