@@ -1,0 +1,25 @@
+.emp-table {
+  width: 98%;
+  overflow: auto;
+  text-align: left;
+  border-collapse: collapse;
+  margin:1%;
+
+
+  td,th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tbody tr:hover{
+    // background-color: #dddddd;
+    cursor: pointer;
+  }
+
+ thead{
+    background: black;
+    color: white;
+    border: black;
+ }
+}

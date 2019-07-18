@@ -46,7 +46,8 @@ export class RegisterComponent implements OnInit {
       email: f.email,
       password: f.password,
       address: this.addresses,
-      phone: this.phoneNumber
+      phone: this.phoneNumber,
+      designation:f.designation
     }
 
     console.log(empObj)
@@ -62,7 +63,6 @@ export class RegisterComponent implements OnInit {
     ).catch(
       e=>{
         this.commonSer.openSnakBar("Something went wrong")
-
       }
     )
   }

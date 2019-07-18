@@ -26,6 +26,11 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Email is required'],
         unique:[true,"Email already registered"]
     },
+    designation: {
+        type: String,
+        trim: true,
+        required: [true, 'Designation is required']
+    },
     password: {
         type: String,
         trim: true,

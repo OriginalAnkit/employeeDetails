@@ -2,16 +2,16 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 .fr{
-    float:right
+    float:right;
 }
 .tc{
-  text-align: center
+  text-align: center !important;
 }
 .tl{
-  text-align: left
+  text-align: left;
 }
 .tr{
-  text-align: right
+  text-align: right;
 }
 .dib{
   display: inline-block;

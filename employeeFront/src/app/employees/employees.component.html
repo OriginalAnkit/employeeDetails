@@ -1,1 +1,31 @@
-<p>employees works!</p>
+<div class="tr">
+        <button mat-raised-button color="accent" style="margin:10px 1%">Add New Employee</button>
+
+</div>
+<table class="emp-table">
+    <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Designation</th>
+          <th>Edit</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        <tr *ngFor='let emp of employees' (click)='viewDetailsDialog(emp,false,$event)'>
+          <td>
+            {{emp._id}}
+          </td>
+          <td>
+              {{emp.name.firstName+' '+emp.name.lastName}}
+          </td>
+          <td>
+              {{emp.designation}}
+          </td>
+          <td class="tc">
+                <button mat-raised-button color="primary" (click)='viewDetailsDialog(emp,true,$event)'>Edit</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -9,9 +9,12 @@ export class ApiService {
   constructor(private http: HttpClient) { }
   domain = 'http://localhost:3000/api/'
   login(data) {
-    return this.http.post(this.domain + 'login', data).toPromise()
+    return this.http.post(this.domain + 'login', data).toPromise();
   }
   register(data) {
-    return this.http.post(this.domain + 'register', data).toPromise()
+    return this.http.post(this.domain + 'register', data).toPromise();
+  }
+  getEmployees(){
+    return this.http.get(this.domain+'employees').toPromise();
   }
 }

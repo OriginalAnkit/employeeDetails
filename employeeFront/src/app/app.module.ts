@@ -11,6 +11,7 @@ import { MatModule } from './mat.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { EmployeesComponent } from './employees/employees.component';
+import { EmployeeDetailDialogComponent } from './employee-detail.dialog/employee-detail.dialog.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EmployeesComponent } from './employees/employees.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    EmployeeDetailDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,7 @@ import { EmployeesComponent } from './employees/employees.component';
     FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[EmployeeDetailDialogComponent]
 })
 export class AppModule { }
