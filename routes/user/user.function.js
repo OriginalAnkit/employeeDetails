@@ -137,9 +137,15 @@ async function getOneEployee(req,res){
         }) 
     }
 }
+
+//NOTE Update User
+function updateUser(){
+
+}
 module.exports = {
     registerUser,
     loginUser,
     listEmployees,
-    getOneEployee
+    getOneEployee,
+    updateUser
 }

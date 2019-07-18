@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,13 @@ import { HttpClient } from '@angular/common/http';
 export class ApiService {
 
   constructor(private http: HttpClient) { }
-  domain = 'http://localhost:3000/api/'
+  domain = environment.url;
+  getToken() {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('authorization', atob(localStorage.getItem('token')));
+
+    return headers;
+  }
   login(data) {
     return this.http.post(this.domain + 'login', data).toPromise();
   }
@@ -15,9 +22,9 @@ export class ApiService {
     return this.http.post(this.domain + 'register', data).toPromise();
   }
   getEmployees(){
-    return this.http.get(this.domain+'employees').toPromise();
+    return this.http.get(this.domain+'employees',{headers:this.getToken()}).toPromise();
   }
   getEmployeeById(id){
-    return this.http.get(this.domain+`/employee/${id}`).toPromise();
+    return this.http.get(this.domain+`/employee/${id}`,{headers:this.getToken()}).toPromise();
   }
 }
