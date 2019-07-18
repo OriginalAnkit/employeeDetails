@@ -31,7 +31,7 @@ export class EmployeesComponent implements OnInit {
   viewDetailsDialog(emp,edit,event) {
     event.stopPropagation();
     emp.edit=edit;
-    this.dialog.open(EmployeeDetailDialogComponent, { data: emp })
+    this.dialog.open(EmployeeDetailDialogComponent, { data: emp ,width:'400px'})
 
   }
 }

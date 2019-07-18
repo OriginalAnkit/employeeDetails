@@ -1,1 +1,45 @@
-<p>employee-detail.dialog works!</p>
+<div class="most-out">
+ <h2 class="tc">Employee Details</h2>
+  <div class='outer-serc'>
+    <div class="inner">
+      <h4>
+        First Name
+      </h4>
+      {{data.name.firstName}}
+    </div>
+    <div class="inner">
+      <h4>
+        Last Name
+      </h4>
+      {{data.name.lastName}}
+    </div>
+  </div>
+  <div class='outer-serc'>
+    <h4>Email</h4>
+    {{data.email}}
+  </div>
+  <div class='outer-serc'>
+    <h4>Designation</h4>
+    {{data.designation}}
+  </div>
+  <h3 class="tc">Phone Number</h3>
+  <div *ngFor='let p of data.phone'>
+    <span class="bold-txt">{{p.type}} :</span>{{p.contact}}
+  </div>
+  <h3 class="tc">Address</h3>
+  <div *ngFor='let add of data.address' class="address-fields">
+      <div>
+          <span class="bold-txt">House Number :</span>{{add.houseNumber}}
+      </div>
+      <div>
+          <span class="bold-txt">Area :</span>{{add.area}}
+      </div>
+      <div>
+          <span class="bold-txt">City :</span>{{add.city}}
+      </div>
+      <div>
+          <span class="bold-txt">Pin Code :</span>{{add.pinCode}}
+      </div>
+
+  </div>
+</div>
