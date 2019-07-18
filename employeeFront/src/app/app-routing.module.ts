@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { AuthService } from './auth.service';
 
 const routes: Routes = [
   {
@@ -22,9 +23,16 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
-  }, {
+  },
+  {
     path: 'employees',
+    canActivate:[AuthService],
     component: EmployeesComponent
+  },
+  {
+    path: 'addEmployee',
+    canActivate:[AuthService],
+    component: RegisterComponent
   }
 ];
 

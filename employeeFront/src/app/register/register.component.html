@@ -1,7 +1,7 @@
 <!-- SECTION Registeration Form -->
 <div class="tc regi-container">
   <mat-card>
-    <h2>Register Employee</h2>
+    <h2>{{addMode?'Add Employee':'Register Employee'}}</h2>
     <form class="form-fields" #f='ngForm' (ngSubmit)="onSubmit(f)">
       <div>
         <div style="width:49%;display:inline-block;margin-right: 10px">
@@ -112,12 +112,12 @@
 
 
       <button mat-raised-button color="primary" [disabled]='f.invalid && conPass.value!=pass.value'
-        type='submit'>Submit</button>
+        type='submit'>{{addMode?'Add Employee':'Submit'}}</button>
 
 
     </form>
-    <div class="tc">
-      <button mat-button color="primary" type='button' routerLink='/login'>Login</button>
+    <div class="tc" *ngIf='!addMode'>
+      <button mat-button color="primary" type='button' routerLink='/login' >Login</button>
     </div>
   </mat-card>
 </div>

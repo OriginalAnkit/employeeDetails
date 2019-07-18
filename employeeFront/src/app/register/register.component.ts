@@ -10,9 +10,14 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private apiSer: ApiService,private commonSer:CommonService,private router:Router) { }
   addresses = [{ type: 'permanent' }];
   phoneNumber = [{ type: 'Mobile' }];
+  addMode=false
+  constructor(private apiSer: ApiService,private commonSer:CommonService,private router:Router) { 
+    if(router.url=='/addEmployee'){
+      this.addMode=true
+    }
+  }
   ngOnInit() {
   }
   addAnotherAddress() {
