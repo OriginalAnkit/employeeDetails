@@ -26,12 +26,18 @@ const routes: Routes = [
   },
   {
     path: 'employees',
-    canActivate:[AuthService],
+    canActivate: [AuthService],
     component: EmployeesComponent
   },
   {
+  path:'employee/:id',
+  canActivate: [AuthService],
+  component: RegisterComponent
+
+  },
+  {
     path: 'addEmployee',
-    canActivate:[AuthService],
+    canActivate: [AuthService],
     component: RegisterComponent
   }
 ];

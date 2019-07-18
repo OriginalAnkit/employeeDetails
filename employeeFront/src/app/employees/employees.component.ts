@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 import { CommonService } from '../common.service';
 import { MatDialog } from '@angular/material';
 import { EmployeeDetailDialogComponent } from '../employee-detail.dialog/employee-detail.dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees',
@@ -11,7 +12,7 @@ import { EmployeeDetailDialogComponent } from '../employee-detail.dialog/employe
 })
 export class EmployeesComponent implements OnInit {
 
-  constructor(private apiSer: ApiService, private commonSer: CommonService, private dialog: MatDialog) { }
+  constructor(private apiSer: ApiService, private commonSer: CommonService, private dialog: MatDialog,private router:Router) { }
   employees = [];
   ngOnInit() {
     this.apiSer.getEmployees().then(
@@ -29,6 +30,10 @@ export class EmployeesComponent implements OnInit {
   }
 
   viewDetailsDialog(emp,edit,event) {
+    if(edit){
+      this.router.navigate(['/employee',emp._id]);
+      return
+    }
     event.stopPropagation();
     emp.edit=edit;
     this.dialog.open(EmployeeDetailDialogComponent, { data: emp ,width:'400px'})

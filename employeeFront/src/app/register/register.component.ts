@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { CommonService } from '../common.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,10 +12,38 @@ export class RegisterComponent implements OnInit {
 
   addresses = [{ type: 'permanent' }];
   phoneNumber = [{ type: 'Mobile' }];
-  addMode=false
-  constructor(private apiSer: ApiService,private commonSer:CommonService,private router:Router) { 
-    if(router.url=='/addEmployee'){
-      this.addMode=true
+  addMode = false;
+  editMode = false;
+
+  firstName = null;
+  lastName = null;
+  email = null;
+  designation = null;
+  copassword = null;
+  password = null;
+
+  constructor(private apiSer: ApiService, private commonSer: CommonService, private router: Router, private route: ActivatedRoute) {
+    if (router.url == '/addEmployee') {
+      this.addMode = true
+    } else if (router.url.includes('/employee/')) {
+      this.editMode = true;
+      this.route.params.subscribe(
+        param => {
+          // console.log(param.id)
+          this.apiSer.getEmployeeById(param.id).then(
+            (user: any) => {
+              console.log(user)
+              this.phoneNumber = user.phone;
+              this.addresses = user.address;
+              this.firstName = user.name.firstName;
+              this.lastName = user.name.lastName;
+              this.email = user.email;
+              this.designation = user.designation;
+
+            }
+          )
+        }
+      )
     }
   }
   ngOnInit() {
@@ -52,21 +80,21 @@ export class RegisterComponent implements OnInit {
       password: f.password,
       address: this.addresses,
       phone: this.phoneNumber,
-      designation:f.designation
+      designation: f.designation
     }
 
     console.log(empObj)
     this.apiSer.register(empObj).then(
-      (r:any) => {
-        if(r.error){
+      (r: any) => {
+        if (r.error) {
           this.commonSer.openSnakBar(r.msg)
-        }else{
+        } else {
           this.commonSer.openSnakBar(r.msg)
           this.router.navigate(['/login'])
         }
       }
     ).catch(
-      e=>{
+      e => {
         this.commonSer.openSnakBar("Something went wrong")
       }
     )

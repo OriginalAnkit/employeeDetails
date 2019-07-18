@@ -17,4 +17,7 @@ export class ApiService {
   getEmployees(){
     return this.http.get(this.domain+'employees').toPromise();
   }
+  getEmployeeById(id){
+    return this.http.get(this.domain+`/employee/${id}`).toPromise();
+  }
 }
