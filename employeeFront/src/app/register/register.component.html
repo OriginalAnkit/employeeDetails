@@ -1,37 +1,44 @@
 <div class="tc regi-container">
     <mat-card>
         <h2>Register Employee</h2>
-        <form class="form-fields">
+        <form class="form-fields" #f='ngForm' (ngSubmit)="onSubmit(f)">
             <div>
                 <div style="width:50%;display:inline-block">
                     <mat-form-field>
-                        <input matInput placeholder="First Name">
+                        <input matInput placeholder="First Name" required ngModel name='firstName'>
                     </mat-form-field>
                 </div>
                 <div style="width:50%;display:inline-block">
                     <mat-form-field>
-                        <input matInput placeholder="Last Email">
+                        <input matInput placeholder="Last Email"  required ngModel name='lastName'> 
                     </mat-form-field>
                 </div>
             </div>
 
 
             <mat-form-field>
-                <input matInput placeholder="Email">
+                <input matInput placeholder="Email"  required ngModel name='email'>
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput placeholder="Password">
+                <input matInput placeholder="Password"  required ngModel name='password'> 
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput placeholder="Confirm Password">
+                <input matInput placeholder="Confirm Password"  required ngModel name='confirmPass'>
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput placeholder="Designation">
+                <input matInput placeholder="Designation"  required ngModel name='designation'>
             </mat-form-field>
-            <button mat-raised-button color="primary">Submit</button>
+
+            <div *ngFor='let add of addresses;let index=index'>
+                <mat-form-field>
+                    <input type="text" matInput placeholder="City" [name]="'address.city'+index" required [(ngModel)]="add.city">
+                </mat-form-field>
+            </div>
+            <button mat-raised-button color="primary" [disabled]='f.invalid' type='submit'>Submit</button>
+
 
         </form>
 

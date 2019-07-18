@@ -8,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
 
   constructor() { }
-
+  addresses = [{}, {}]
   ngOnInit() {
+  }
+
+  onSubmit(f) {
+    console.log(f,this.addresses)
   }
 
 }
