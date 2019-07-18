@@ -5,7 +5,6 @@ import { MatSnackBarConfig, MatSnackBar } from '@angular/material';
   providedIn: 'root'
 })
 export class CommonService {
-
   constructor(public snackBar: MatSnackBar) { }
   openSnakBar(message) {
     let config = new MatSnackBarConfig();

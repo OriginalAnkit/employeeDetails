@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   designation = null;
   copassword = null;
   password = null;
-
+  userId = null;
   constructor(private apiSer: ApiService, private commonSer: CommonService, private router: Router, private route: ActivatedRoute) {
     if (router.url == '/addEmployee') {
       this.addMode = true
@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
       this.route.params.subscribe(
         param => {
           // console.log(param.id)
+          this.userId = param.id;
           this.apiSer.getEmployeeById(param.id).then(
             (user: any) => {
               console.log(user)
@@ -96,6 +97,33 @@ export class RegisterComponent implements OnInit {
     ).catch(
       e => {
         this.commonSer.openSnakBar("Something went wrong")
+      }
+    )
+  }
+
+  updateDetails() {
+    let empObj = {
+      name: {
+        firstName: this.firstName,
+        lastName: this.lastName
+      },
+      email: this.email,
+      address: this.addresses,
+      phone: this.phoneNumber,
+      designation: this.designation
+    }
+    this.apiSer.updateUserDetails(this.userId, empObj).then(
+      (data: any) => {
+        if (data.error) {
+          this.commonSer.openSnakBar(data.msg);
+          return
+        }
+        this.commonSer.openSnakBar(data.msg);
+        this.router.navigate(['/employees'])
+      }
+    ).catch(
+      e=>{
+        this.commonSer.openSnakBar('Something went wrong')
       }
     )
   }

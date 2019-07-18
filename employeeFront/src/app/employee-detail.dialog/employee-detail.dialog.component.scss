@@ -1,22 +1,26 @@
-.outer-serc{
-    .inner{
-        width: 50%;
-        display: inline-block;
-    }
-    h4{
-        margin-bottom:0px 
-    }
+.outer-serc {
+  .inner {
+    width: 50%;
+    display: inline-block;
+  }
+  h4 {
+    margin-bottom: 0px;
+  }
 }
 
-.bold-txt{
-    font-weight: bold
+.bold-txt {
+  font-weight: bold;
 }
-.address-fields{
-    span{
-        min-width: 120px;
-        display: inline-block;
-    }
+.address-fields {
+  span {
+    min-width: 120px;
+    display: inline-block;
+  }
 }
-.most-out{
-    font-size: 16px;
+.most-out {
+  font-size: 16px;
+}
+.sep {
+  border-bottom: 1px solid #cec9c9;
+  margin-bottom: 13px;
 }

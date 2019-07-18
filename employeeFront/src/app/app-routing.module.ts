@@ -30,15 +30,18 @@ const routes: Routes = [
     component: EmployeesComponent
   },
   {
-  path:'employee/:id',
-  canActivate: [AuthService],
-  component: RegisterComponent
+    path: 'employee/:id',
+    canActivate: [AuthService],
+    component: RegisterComponent
 
   },
   {
     path: 'addEmployee',
     canActivate: [AuthService],
     component: RegisterComponent
+  }, {
+    path: '**',
+    redirectTo:'login'
   }
 ];
 

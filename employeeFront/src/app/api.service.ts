@@ -25,6 +25,9 @@ export class ApiService {
     return this.http.get(this.domain+'employees',{headers:this.getToken()}).toPromise();
   }
   getEmployeeById(id){
-    return this.http.get(this.domain+`/employee/${id}`,{headers:this.getToken()}).toPromise();
+    return this.http.get(this.domain+`employee/${id}`,{headers:this.getToken()}).toPromise();
+  }
+  updateUserDetails(id,body){
+    return this.http.put(this.domain + `employee/${id}`, body, { headers: this.getToken() }).toPromise()
   }
 }

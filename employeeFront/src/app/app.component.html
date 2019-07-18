@@ -7,9 +7,15 @@
             </button>
         </div>
         <div class="menu-btn">
-            <button mat-stroked-button color="primary" routerLink='/login'>Login</button>
-            <button mat-stroked-button color="primary" routerLink='/register'>Register</button>
-            <button mat-stroked-button color="primary" routerLink='/employees'>Details</button>
+            <span *ngIf='!isLoggedIn'>
+                <button mat-stroked-button color="primary" routerLink='/login'>Login</button>
+                <button mat-stroked-button color="primary" routerLink='/register'>Register</button>
+            </span>
+            <span *ngIf='isLoggedIn'>
+                <button mat-stroked-button color="primary" routerLink='/employees'>Details</button>
+                <button mat-stroked-button color="primary" routerLink='/addEmployee'>Add Employee</button>
+                <button mat-stroked-button color="primary" routerLink='/login' (click)='logoutClicked()'>Logout</button>
+            </span>
 
         </div>
     </mat-sidenav>

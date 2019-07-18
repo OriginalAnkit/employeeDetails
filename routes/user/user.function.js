@@ -11,7 +11,6 @@ async function registerUser(req, res, next) {
     if (invalid) {
         msg = null
         for (var err in invalid.errors) {
-            //   console.log(err, invalid.errors[err].message)
             msg = invalid.errors[err].message;
             break;
         }
@@ -75,71 +74,111 @@ async function loginUser(req, res) {
         })
         return;
     }
-    body=valid
+    body = valid
     //STUB finding user by email
-    var user = await User.findOne({email:body.email});
-    if(!user){
+    var user = await User.findOne({ email: body.email });
+    if (!user) {
         res.json({
-            error:true,
-            msg:"User not found "
+            error: true,
+            msg: "User not found "
         })
         return
     }
 
     //STUB comparing password
-    var validPass=utility.comparePass(body.password,user.password);
-    if(!validPass){
+    var validPass = utility.comparePass(body.password, user.password);
+    if (!validPass) {
         res.json({
-            error:true,
-            msg:`Invalid email or password`
+            error: true,
+            msg: `Invalid email or password`
         })
-        return 
+        return
     }
 
-    newUser=user.toObject()
+    newUser = user.toObject()
     delete newUser.password;
     delete newUser.__v;
-    newUser.token=utility.generateToken({id:newUser._id})
+    newUser.token = utility.generateToken({ id: newUser._id })
     res.json({
-        error:false,
-        msg:'Login Successfull',
-        data:newUser
+        error: false,
+        msg: 'Login Successfull',
+        data: newUser
     })
 }
 
 //SECTION list employees
-async function listEmployees(req,res){
- try{
-     let users=await User.find({},{__v:0,password:0});
-     res.json({
-         error:false,
-         msg:'list of users',
-         data:users
-     })
- }catch(e){
-     res.json({
-         error:true,
-         msg:`Something went wrong`
-     })
- }
+async function listEmployees(req, res) {
+    try {
+        let users = await User.find({}, { __v: 0, password: 0 });
+        res.json({
+            error: false,
+            msg: 'list of users',
+            data: users
+        })
+    } catch (e) {
+        res.json({
+            error: true,
+            msg: `Something went wrong`
+        })
+    }
 
 }
 
 //STUB Get employee details by id
-async function getOneEployee(req,res){
-    try{
-        let user=await User.findById(req.params.id,{password:0,_v:0})
+async function getOneEployee(req, res) {
+    try {
+        let user = await User.findById(req.params.id, { password: 0, _v: 0 })
         res.json(user);
-    }catch(e){
+    } catch (e) {
         res.json({
-            error:true,
-            msg:`Something went wrong`
-        }) 
+            error: true,
+            msg: `Something went wrong`
+        })
     }
 }
 
 //NOTE Update User
-function updateUser(){
+async function updateUser(req, res) {
+    var user = req.body;
+    var verifyData = await User.findOne({
+        $or: [{
+            email: user.email
+        }, {
+            'phone': {
+                $elemMatch: {
+                    'contact': user.phone.map(p => p.contact)
+                }
+            }
+        }]
+    });
+    console.log(req.params.id, ' ', verifyData._id.toString()    )
+    if (verifyData && req.params.id != verifyData._id.toString()) {
+        attr = null;
+        if (verifyData.email == user.email) {
+            attr = "email"
+        } else {
+            attr = "phone"
+        }
+        res.json({
+            error: true,
+            msg: attr + ' already in use'
+        })
+        return;
+    }
+    var updateUser=null
+    try{
+        updateUser= await User.findByIdAndUpdate(req.params.id,req.body);
+        res.json({
+            msg:'Usesr Updated Successfully',
+            error:false
+        })
+    }catch(e){
+        console.log(e)
+        res.json({
+            error:true,
+            msg:'Something went wrong'
+        })
+    }
 
 }
 module.exports = {

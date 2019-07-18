@@ -6,7 +6,7 @@
       <div>
         <div style="width:49%;display:inline-block;margin-right: 10px">
           <mat-form-field class="w100">
-            <input matInput placeholder="First Name" required  name='firstName' [(ngModel)]="firstName">
+            <input matInput placeholder="First Name" required name='firstName' [(ngModel)]="firstName">
           </mat-form-field>
         </div>
         <div style="width:49%;display:inline-block">
@@ -22,23 +22,23 @@
       </mat-form-field>
 
       <!-- STUB Confirm password -->
-        <mat-form-field>
-          <input matInput placeholder="Password" required [(ngModel)]='password' name='password' type="password" #pass='ngModel'
-            minlength="6">
-        </mat-form-field>
-        <p *ngIf='pass.value && pass.touched && pass.value.length<6' class="error-txt">
-          password must be greater than 6 characters
-        </p>
-        <mat-form-field>
-          <input matInput placeholder="Confirm Password" required [(ngModel)]='copassword' name='confirmPass' type="password"
-            #conPass='ngModel'>
-        </mat-form-field>
-        <p *ngIf='conPass.value!=pass.value && pass.touched && conPass.touched' class="error-txt">
-          password and confirm password not matched
-        </p>
-        <mat-form-field>
-          <input matInput placeholder="Designation" required [(ngModel)]='designation' name='designation'>
-        </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Password" required [(ngModel)]='password' name='password' type="password"
+          #pass='ngModel' minlength="6" [disabled]='editMode'>
+      </mat-form-field>
+      <p *ngIf='pass.value && pass.touched && pass.value.length<6' class="error-txt">
+        password must be greater than 6 characters
+      </p>
+      <mat-form-field>
+        <input matInput placeholder="Confirm Password" required [(ngModel)]='copassword' name='confirmPass'
+          type="password" #conPass='ngModel' [disabled]='editMode'>
+      </mat-form-field>
+      <p *ngIf='conPass.value!=pass.value && pass.touched && conPass.touched' class="error-txt">
+        password and confirm password not matched
+      </p>
+      <mat-form-field>
+        <input matInput placeholder="Designation" required [(ngModel)]='designation' name='designation'>
+      </mat-form-field>
       <!-- STUB Phone numbers -->
       <div *ngFor='let phn of phoneNumber;let index=index'>
         <div class="address-container">
@@ -95,7 +95,7 @@
             </mat-form-field>
             <mat-form-field>
               <input type="number" matInput placeholder="Pincode" [name]="'address.pincode'+index" required
-                [(ngModel)]="add.pinCode">
+                [(ngModel)]="add.pinCode" >
             </mat-form-field>
           </div>
           <div class="tr" *ngIf='addresses.length>1'>
@@ -111,13 +111,14 @@
       </div>
 
 
-      <button mat-raised-button color="primary" [disabled]='f.invalid && conPass.value!=pass.value'
-        type='submit' *ngIf='!editMode'>{{addMode?'Add Employee':'Submit'}}</button>
-
-
+      <button mat-raised-button color="primary" [disabled]='f.invalid || conPass.value!=pass.value' type='submit'
+        *ngIf='!editMode'>{{addMode?'Add Employee':'Submit'}}</button>
+        <button mat-raised-button color="primary" [disabled]='f.invalid' type='button'
+        *ngIf='editMode' (click)='updateDetails()'>Update Details</button>
+  <!-- {{f.invalid+ ' '  }}{{''+ conPass.value!=pass.value}} -->
     </form>
     <div class="tc" *ngIf='!addMode && !editMode'>
-      <button mat-button color="primary" type='button' routerLink='/login' >Login</button>
+      <button mat-button color="primary" type='button' routerLink='/login'>Login</button>
     </div>
   </mat-card>
 </div>

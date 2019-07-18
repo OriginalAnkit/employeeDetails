@@ -15,12 +15,18 @@
     outline: none;
   }
   .menu-btn {
-    margin-top: 50px; 
-    button{
+    margin-top: 50px;
+    button {
       display: block;
-      margin:auto;
+      margin: auto;
       margin-top: 10px;
       width: 50%;
     }
+  }
+}
+
+@media (max-width: 800px) {
+  .mat-sidenav {
+    width: 70% !important;
   }
 }
