@@ -1,46 +1,123 @@
+<!-- SECTION Registeration Form -->
 <div class="tc regi-container">
-    <mat-card>
-        <h2>Register Employee</h2>
-        <form class="form-fields" #f='ngForm' (ngSubmit)="onSubmit(f)">
-            <div>
-                <div style="width:50%;display:inline-block">
-                    <mat-form-field>
-                        <input matInput placeholder="First Name" required ngModel name='firstName'>
-                    </mat-form-field>
-                </div>
-                <div style="width:50%;display:inline-block">
-                    <mat-form-field>
-                        <input matInput placeholder="Last Email"  required ngModel name='lastName'> 
-                    </mat-form-field>
-                </div>
-            </div>
+  <mat-card>
+    <h2>Register Employee</h2>
+    <form class="form-fields" #f='ngForm' (ngSubmit)="onSubmit(f)">
+      <div>
+        <div style="width:49%;display:inline-block;margin-right: 10px">
+          <mat-form-field class="w100">
+            <input matInput placeholder="First Name" required ngModel name='firstName'>
+          </mat-form-field>
+        </div>
+        <div style="width:49%;display:inline-block">
+          <mat-form-field class="w100">
+            <input matInput placeholder="Last Email" required ngModel name='lastName'>
+          </mat-form-field>
+        </div>
+      </div>
 
 
-            <mat-form-field>
-                <input matInput placeholder="Email"  required ngModel name='email'>
+      <mat-form-field>
+        <input matInput placeholder="Email" required ngModel name='email' email type="email">
+      </mat-form-field>
+
+      <!-- STUB Confirm password -->
+      <mat-form-field>
+        <input matInput placeholder="Password" required ngModel name='password' type="password" #pass='ngModel'
+          minlength="6">
+      </mat-form-field>
+      <p *ngIf='pass.value && pass.touched && pass.value.length<6' class="error-txt">
+        password must be greater than 6 characters
+      </p>
+      <mat-form-field>
+        <input matInput placeholder="Confirm Password" required ngModel name='confirmPass' type="password"
+          #conPass='ngModel'>
+      </mat-form-field>
+      <p *ngIf='conPass.value!=pass.value && pass.touched && conPass.touched' class="error-txt">
+        password and confirm password not matched
+      </p>
+      <mat-form-field>
+        <input matInput placeholder="Designation" required ngModel name='designation'>
+      </mat-form-field>
+      <!-- STUB Phone numbers -->
+      <div *ngFor='let phn of phoneNumber;let index=index'>
+        <div class="address-container">
+          <h4 class="tc">Phone Number {{index+1}}#</h4>
+          <div>
+            <mat-form-field class="type">
+              <mat-label>Phone Type</mat-label>
+              <mat-select value="permanent" [(ngModel)]="phn.type" [name]="'phone.type'+index">
+                <mat-option value="Mobile">Mobile</mat-option>
+                <mat-option value="Landline">Landline</mat-option>
+              </mat-select>
             </mat-form-field>
+          </div>
+          <mat-form-field class="type">
+            <input type="number" matInput placeholder="Phone Number" [name]="'address.contact'+index" required
+              [(ngModel)]="phn.contact">
+          </mat-form-field>
+          <div class="tr" *ngIf='phoneNumber.length>1'>
+            <mat-icon class=" delete" (click)='deletePhone(index)'>delete_outline</mat-icon>
+          </div>
+        </div>
 
-            <mat-form-field>
-                <input matInput placeholder="Password"  required ngModel name='password'> 
+      </div>
+      <div>
+        <button mat-button color="primary" (click)='addAnotherPhone()' type='button'>Add Another Phone Number</button>
+      </div>
+      <!--STUB Address fields   -->
+      <div *ngFor='let add of addresses;let index=index'>
+        <div class="address-container">
+          <h4 class="tc">Address {{index+1}}#</h4>
+          <div>
+            <mat-form-field class="type">
+              <mat-label>Address Type</mat-label>
+              <mat-select value="permanent" [(ngModel)]="add.type" [name]="'address.type'+index">
+                <mat-option value="permanent">Permanent</mat-option>
+                <mat-option value="temp">Temporary</mat-option>
+              </mat-select>
             </mat-form-field>
-
+          </div>
+          <div class="address-fields">
             <mat-form-field>
-                <input matInput placeholder="Confirm Password"  required ngModel name='confirmPass'>
+              <input type="number" matInput placeholder="HouseNumber" [name]="'address.houseNumber'+index" required
+                [(ngModel)]="add.houseNumber">
             </mat-form-field>
-
             <mat-form-field>
-                <input matInput placeholder="Designation"  required ngModel name='designation'>
+              <input type="text" matInput placeholder="Area" [name]="'address.area'+index" required
+                [(ngModel)]="add.area">
             </mat-form-field>
+          </div>
+          <div class="address-fields">
+            <mat-form-field>
+              <input type="text" matInput placeholder="City" [name]="'address.city'+index" required
+                [(ngModel)]="add.city">
+            </mat-form-field>
+            <mat-form-field>
+              <input type="number" matInput placeholder="Pincode" [name]="'address.pincode'+index" required
+                [(ngModel)]="add.pinCode">
+            </mat-form-field>
+          </div>
+          <div class="tr" *ngIf='addresses.length>1'>
+            <mat-icon class=" delete" (click)='deleteAddress(index)'>delete_outline</mat-icon>
+          </div>
+        </div>
 
-            <div *ngFor='let add of addresses;let index=index'>
-                <mat-form-field>
-                    <input type="text" matInput placeholder="City" [name]="'address.city'+index" required [(ngModel)]="add.city">
-                </mat-form-field>
-            </div>
-            <button mat-raised-button color="primary" [disabled]='f.invalid' type='submit'>Submit</button>
+      </div>
 
 
-        </form>
+      <div>
+        <button mat-button color="primary" (click)='addAnotherAddress()' type='button'>Add Another Address</button>
+      </div>
 
-    </mat-card>
+
+      <button mat-raised-button color="primary" [disabled]='f.invalid && conPass.value!=pass.value'
+        type='submit'>Submit</button>
+
+
+    </form>
+    <div class="tc">
+      <button mat-button color="primary" type='button' routerLink='/login'>Login</button>
+    </div>
+  </mat-card>
 </div>

@@ -1,11 +1,47 @@
 .regi-container {
   width: 40%;
-  margin: auto;
-  margin-top: 1%;
+  margin: 1% auto;
 }
+
 .form-fields {
   display: flex;
   flex-direction: column;
+}
+
+.address-fields {
+  width: 50%;
+  display: inline-block;
+}
+
+.address-container {
+  margin: 7px 5px;
+  box-shadow: 1px 1px 1px 2px #eaeaea;
+  border-radius: 5px;
+
+  h4 {
+    margin-bottom: 0px;
+    padding-top: 13px;
+  }
+
+  .type {
+    width: 85%;
+  }
+
+  .delete {
+    padding: 2px 20px
+  }
+
+  .delete:hover {
+    cursor: pointer;
+    color: red;
+  }
+}
+
+.error-txt {
+  color: red;
+  margin: 0px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 @media (max-width: 800px) {
