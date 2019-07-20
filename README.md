@@ -5,7 +5,7 @@
 * MongoDB
 * Angular Material
 
-##Steps to start the project
+## Steps to start the project
 - **Starting the node server**
   1. Go to root directory of the project and add the keys to keys.json file
   2. npm install 
@@ -20,6 +20,6 @@
 
   This will start the angular server at port 4200
 
-##Links
+## Links
 - [Github link](https://github.com/OriginalAnkit/employeeDetails/)
 - [deployed link](https://synapseindia.herokuapp.com/home)
