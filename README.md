@@ -23,3 +23,4 @@
 ## Links
 - [Github link](https://github.com/OriginalAnkit/employeeDetails/)
 - [deployed link](https://synapseindia.herokuapp.com/home)
+- [Developer profile](www.linkedin.com/in/ankit-halder)
