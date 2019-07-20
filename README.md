@@ -1,5 +1,5 @@
 # Employee Management System
-##Technologies Used
+## Technologies Used
 * Node.js 
 * Angular
 * MongoDB
